@@ -11,7 +11,7 @@
                         <span>文章分类</span>      
                 </el-menu-item>
               </router-link>
-              <router-link to="/index/newArticle">
+              <router-link :to="{path:'/index/articleinformation',query:{title:articleTitle,id:articleId}}">
                 <el-menu-item index="newarticle" :class = "activeIndex == 'newarticle' ? 'active' : '' ">
                     <i></i>
                     <span>最新文章</span>  
@@ -34,16 +34,29 @@
     </div>
 </template>
 <script>
+import {articleApi} from '../../apiJS/api'
 export default {
     data(){
         return{
-            activeIndex:'category'
+            activeIndex:'category',
+            articleTitle:'',
+            articleId:''
         }
     },
     methods:{
          handleSelect(key, keyPath) {
           this.activeIndex=key;
+        },
+         getTheArticle(){
+            articleApi.getLastArticle().then(res=>{
+                let data=res.data.data;
+                this.articleTitle=data.title;
+                this.articleId=data.id;
+            })
         }
+    },
+     created(){
+        this.getTheArticle();
     }
     
 }

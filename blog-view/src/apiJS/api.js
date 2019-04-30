@@ -22,6 +22,11 @@ let articleApi={
     getAll:()=>{
         return axios.get("/server/client/article/all")
     },
+    //得到最新的一篇文章
+    getLastArticle:()=>{
+        return axios.get("/server/client/articles/lastest")
+
+    },
     //根据文章ID得到一篇文章的题图信息
     getOne:id=>{
         return axios.get("/server/client/article/one",{params:{id:id}})
