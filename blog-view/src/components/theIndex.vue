@@ -17,14 +17,16 @@
         <div class="scroll">
             <section class="panel" id="panel1">
                 <div class="icon" data-icon="C"></div>
-                <h1>Welcome to Chenxq's personalBlog</h1>
+                <h1 class="title">Welcome to Chenxq's personalBlog</h1>
+                <div class="personImg"><img src="../assets/img/person.jpeg" alt="" /></div>
             </section>
             <section class="panel panelColor" id="panel2">
                 <div class="icon" data-icon="X"></div>
                 <h1>文章推荐</h1>
-                <ul>
-                  <li>杀杀杀</li>
-                  <li>杀杀杀</li>
+                <ul class="recommend">
+                 <li v-for="(item,index) in recommendList" :key="index">
+                     <a :href="item.url">{{item.title}}</a>
+                 </li>
                 </ul>
             </section>
             <section class="panel" id="panel3">
@@ -43,6 +45,7 @@
     </div>
 </template>
 <script>
+import {recommendApi} from '../apiJS/api'
 window.onload= function () {
         var scroll=document.getElementsByClassName("scroll")[0];//ie不兼容，换成id会成功
         var panel=document.getElementsByClassName("panel");//ie不兼容，换成id会成功
@@ -95,11 +98,24 @@ window.onload= function () {
         }
     }
 export default {
+    data(){
+        return {
+            recommendList:''
+        }
+    },
     methods:{
         login(){
             this.$router.push("/index")
-        }
-    }
+        },
+        async init(){         
+            let data=await recommendApi.getAll();
+            this.recommendList=data.data;
+            console.log(this.recommendList)
+        },
+    },
+    created(){
+       this.init();
+    },
     
 }
 </script>
@@ -372,5 +388,46 @@ div.imgT:focus,
 div.imgT:active{
     background:#fff;
 }
-
+.recommend{
+    text-align: left;
+    padding: 20px;
+    
+}
+.recommend li{
+    display: inline-block;
+    width:48%;
+    float: left;
+    padding: 0px 5px;
+    background: rgba(255, 255, 255, 0.233);
+}
+.recommend li:nth-child(odd){
+    text-align: end;
+    border-right:5px solid rgb(255, 0, 98,0.685);
+    margin-right:10px;
+}
+.recommend li:nth-child(even){
+    border-left:5px solid rgba(255, 0, 98, 0.685);
+    margin-left:10px;
+}
+.recommend a{
+   display: inline;
+   width:auto;
+   background:transparent;
+   top:auto;
+   position:relative;
+}
+.recommend a:hover{
+    color:tomato;
+}
+.personImg{
+    width:400px;
+    height:530px;
+    position: fixed;
+    bottom: 0;
+    right:0;
+}
+.personImg img{
+    width:100%;
+    height:100%;
+}
 </style>
