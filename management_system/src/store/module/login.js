@@ -1,6 +1,7 @@
  const state = {
     token: window.sessionStorage.getItem('token'),
-    username: ''
+    username: '',
+    isLogin:false
   };
   const mutations = {
     LOGIN: (state, data) => {
@@ -11,12 +12,18 @@
     LOGOUT: (state) => {
     // 登出的时候要清除token
       state.token = null ;
-      window.sessionStorage.removeItem('token')
+      window.sessionStorage.removeItem('token');
     },
     USERNAME: (state, data) => {
       // 把用户名存起来
       state.username = data ;
       window.sessionStorage.setItem('username', data);
+    },
+    ISLOGIN:(state)=>{
+      state.isLogin=true;
+    },
+    NOLOGIN:(state)=>{
+      state.isLogin=false;
     }
   };
   const actions = {
@@ -28,6 +35,12 @@
     },
     UserName ({ commit }, data) {
       commit('USERNAME', data);
+    },
+    USERISLOGIN({commit}){
+      commit('ISLOGIN');
+    },
+    USERNOLOGIN({commit}){
+      commit('NOLOGIN');
     }
   } ;
   export default{

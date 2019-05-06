@@ -24,13 +24,14 @@
         
     </div>
 </div>
-    <p class="copyright">	&copy;Chenxq,2018/11/26</p>
+    <p class="copyright">	&copy;Chenxq,2019</p>
 </div>
 
 </template>
 
 <script>
 import {loginApi}  from "../../apiJS/api"
+import {mapState,mapGetters,mapActions} from 'vuex';
 export default {
      data() {
       return {
@@ -51,7 +52,16 @@ export default {
         }
       };
     },
+    computed:{
+        ...mapState({
+            isLogin:state=>state.login.isLogin
+        }),
+
+    },
     methods:{
+        ...mapActions('login',[
+            'USERISLOGIN','USERNOLOGIN'
+        ]),
         handleClick(tab,event){
 
         },
@@ -77,20 +87,20 @@ export default {
                             type: 'success',
                             message: '登录成功'
                             });
-                    // //拿到返回的token和username，并存到store
-                    // let token = data.token;
-                     let username = this.ruleForm.username;
-                    // this.$store.dispatch('UserLogin', token);
-                    // this.$store.dispatch('UserName', username);
-                    // //存对象
-                    // // localStorage.setItem('hou', JSON.stringify(info));
-                    // //存字符串
-                    localStorage.setItem('name',username );
-                    // //跳到目标页
-                        this.$router.push('category');
-                
-                
-                    }
+                            // //拿到返回的token和username，并存到store
+                            // let token = data.token;
+                            let username = this.ruleForm.username;
+                            // this.$store.dispatch('UserLogin', token);
+                            // this.$store.dispatch('UserName', username);
+                            this.USERISLOGIN();
+                            // //存对象
+                            // // localStorage.setItem('hou', JSON.stringify(info));
+                            // //存字符串
+                            localStorage.setItem('name',username );
+                            localStorage.setItem('isLogin',this.isLogin);
+                            // //跳到目标页
+                                this.$router.push('category');
+                        }
                 else{
                    this.$message({
                     type: 'error',
@@ -111,6 +121,9 @@ export default {
 
 
 
+    },
+    created(){
+        console.log(this.isLogin);
     }
 }
 </script>

@@ -19,21 +19,22 @@ import DraftArticleDetail from '../components/detail/DraftArticleDetails'
 import EditDetail from '../components/detail/EditDetails'
 import CategoryArticleDetail from '../components/detail/CategoryArticleDetail'
 import ArticlesDetails from '../components/detail/ArticlesDetails'
-
+import PersonalCenter from '../components/personalcenter'
 Vue.use(Router)
 
-export default new Router({
+const router= new Router({
   mode:'history',
   routes: [
     {
       path:'/login',
-      component:Login
+      component:Login,
+      name:'login'
     },
     {
       path: '/',
       name: 'BlogManagement',
       component: BlogManagement,
-      redirect:'/login',
+      redirect:'/category',
       meta: {
         requiresAuth: true
       },
@@ -41,7 +42,7 @@ export default new Router({
         {
           path:'category',
           name:'blogcategory',
-          component:BlogCategory
+          component:BlogCategory,
         },
         {
           path:'newarticle',
@@ -123,8 +124,53 @@ export default new Router({
           path:'recommend',
           name:'recommend',
           component:Recommend
+        },
+        {
+          path:'percenter',
+          name:'percenter',
+          component:PersonalCenter
         }
       ]
     },
+    {
+    
+      path: '**',   // 错误路由
+      redirect: '/login'   //重定向
+    },
   ]
 })
+
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  console.log('路由守卫');
+  // to: Route: 即将要进入的目标 路由对象
+  // from: Route: 当前导航正要离开的路由
+  // next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
+
+  //这个里面的值都是name值
+  const nextRoute = ['blogcategory', 'newarticle','draft','newessay','articlemanage','websum','recommend','percenter',
+  'articlecomment','comment','error','cachemanage','setting','log','articleinfo','editinfo','categoryArticles','articleinformation'];
+  let login=window.localStorage.getItem("isLogin");
+  let isLogin = login==null?false:login; // 是否登录
+  
+  console.log(isLogin)
+  // 未登录状态；当路由到nextRoute指定页时，跳转至login
+  if (nextRoute.indexOf(to.name) >= 0) {  
+    console.log("kkk");
+    if (!isLogin) {
+      console.log('what fuck');
+      router.push({ name: 'login' })
+    }
+  }
+  // 已登录状态；当路由到login时，跳转至category
+  if (to.name === 'login') {
+    if (isLogin) {
+      router.push({ name: 'blogcategory' });
+    }
+  }
+  next();
+});
+
+
+export default router;
