@@ -13,6 +13,24 @@ let categoryApi={
     },
     getLastArticles:category=>{
         return axios.get("/server/client/category/getlastarticles",{params:{id:category}})
+    },
+    async search(categories){
+        
+        try {
+            let res= await axios.get("/server/client/category/same",{params:{args:categories}});
+            res=res.data;
+             return new Promise((resolve,rejected)=>{
+                 if(res.code===0){
+                    resolve(res);
+                 }else{
+                    resolve(res);
+                 }
+             })
+            
+        } catch (error) {
+            alert("服务器出错")
+        }
+
     }
 }
 

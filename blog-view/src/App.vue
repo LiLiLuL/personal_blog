@@ -1,6 +1,9 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div>
+    <div id="app">
+      <router-view/>
+    </div>
+    <p style="text-align:center">&copy;Chenxq2019,侵权必究</p>
   </div>
 </template>
 
@@ -92,5 +95,8 @@ li{
 }
 a:-webkit-any-link {
     color: inherit;
+}
+.el-tag{
+  padding: 0px;
 }
 </style>
