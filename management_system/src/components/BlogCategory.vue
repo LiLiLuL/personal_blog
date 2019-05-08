@@ -364,9 +364,7 @@ margin-bottom: 18px;
 .clearfix:after {
     clear: both
 }
-.my-pagination{
-  text-align: right;
-}
+
 .nullImg{
     text-align: center;
 }

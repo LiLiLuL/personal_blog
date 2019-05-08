@@ -79,4 +79,11 @@ export default {
   font-size:16px;
 
 }
+.my-pagination{
+  text-align: right;
+}
+.el-loading-spinner .el-loading-text{
+  color:#006666;
+  font-size:16px;
+}
 </style>
