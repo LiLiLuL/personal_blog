@@ -99,4 +99,7 @@ a:-webkit-any-link {
 .el-tag{
   padding: 0px;
 }
+.el-timeline-item__tail {
+    border-left:2px solid #006666;
+}
 </style>

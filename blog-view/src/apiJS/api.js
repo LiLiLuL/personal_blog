@@ -94,12 +94,38 @@ let commentApi={
     articleAll:id=>{
         return axios.get("/server/client/comment/articleAllComment",{params:{id:id}})
     },
+    async articleAllById(id){
+        let res=await axios.get("/server/client/comment/articleAllComment",{params:{id:id}});
+        return res.data;
+    },
     images:()=>{
         return axios.get("/server/client/image/all")
     },
     async allComments(){
         let res=await axios.get("/server/client/comment/allComments");
         return  res.data;
+    },
+    //对评论增加一条回复
+    addReply:commentReply=>{
+        return axios.post("/server/client/reply/add",commentReply)
+    },
+    //查找一条评论下的所有回复
+    async selectReply(commentId){
+        try{
+         let res= await axios.get("/server/client/reply/select",{params:{comment_id:commentId}});
+         res = res.data
+            return new Promise((resolve) => {
+            if (res.code === 0) {
+                resolve(res)
+            } else {
+                resolve(res)
+            }
+            })
+        } catch (err) {
+            alert('服务器出错')
+            console.log(err)
+        }
+
     }
 }
 //博文推荐的相关操作

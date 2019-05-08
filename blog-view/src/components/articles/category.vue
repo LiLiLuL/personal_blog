@@ -13,7 +13,7 @@
              <p v-show="show(index)" class="check"></p>
          
             </el-tag>
-            <el-button type="default" @click="search(checkedCategories)">搜索</el-button>
+            <el-button type="default" @click="search(checkedCategories)"><i class="icon iconfont icon-iconfonticonfontsousuo1"></i>搜索</el-button>
         </ul>
         <hr />
         <div v-if="showList">

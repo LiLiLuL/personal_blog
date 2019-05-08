@@ -7,26 +7,26 @@
           <el-menu class="myNav" :default-active="activeIndex" @select="handleSelect">
               <router-link to="/index/category">
                 <el-menu-item index="category" :class = "activeIndex == 'category' ? 'active' : '' ">
-                        <i></i>
-                        <span>文章分类</span>      
+                        <span>文章分类</span>  
+                        <i class="icon iconfont icon-fenlei"></i>    
                 </el-menu-item>
               </router-link>
               <router-link :to="{path:'/index/articleinformation',query:{title:articleTitle,id:articleId}}">
                 <el-menu-item index="newarticle" :class = "activeIndex == 'newarticle' ? 'active' : '' ">
-                    <i></i>
                     <span>最新文章</span>  
+                     <i class="icon iconfont icon-zuixinwenzhang_huaban"></i>
                  </el-menu-item>
               </router-link>
                <router-link to="/index/recommend">
                 <el-menu-item index="recommend" :class = "activeIndex == 'recommend' ? 'active' : '' ">
-                    <i></i>
                     <span>文章推荐</span>
+                     <i class="icon iconfont icon-tuijian"></i>
                 </el-menu-item>
               </router-link>
               <router-link to="/index/authormes">
                 <el-menu-item index="authormes" :class = "activeIndex == 'authormes' ? 'active' : '' ">
-                    <i></i>
                     <span>作者有话说</span>
+                    <i class="icon iconfont icon-liuyan"></i>
                 </el-menu-item>
               </router-link>
           </el-menu>
