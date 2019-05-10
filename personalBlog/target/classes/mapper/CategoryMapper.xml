@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenxq.blog.personalBlog.Repository.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.chenxq.blog.personalBlog.Domain.Category">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="art_number" jdbcType="TINYINT" property="art_number" />
+    <result column="create_by" jdbcType="TIMESTAMP" property="create_by" />
+    <result column="modified_by" jdbcType="TIMESTAMP" property="modified_by" />
+    <result column="is_effective" jdbcType="BIT" property="is_effective" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, art_number, create_by, modified_by, is_effective
+  </sql>
+  <select id="selectByExample" parameterType="com.chenxq.blog.personalBlog.Domain.CategoryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from category
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <delete id="deleteByName" parameterType="java.lang.String">
+    delete from category
+    where name = #{name,jdbcType=VARCHAR}
+  </delete>
+ 
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.chenxq.blog.personalBlog.Domain.Category" useGeneratedKeys="true">
+    insert into category (name, art_number, create_by, 
+      modified_by, is_effective)
+    values (#{name,jdbcType=VARCHAR}, #{art_number,jdbcType=TINYINT}, #{create_by,jdbcType=TIMESTAMP}, 
+      #{modified_by,jdbcType=TIMESTAMP}, #{is_effective,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.chenxq.blog.personalBlog.Domain.Category" useGeneratedKeys="true">
+    insert into category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="art_number != null">
+        art_number,
+      </if>
+      <if test="create_by != null">
+        create_by,
+      </if>
+      <if test="modified_by != null">
+        modified_by,
+      </if>
+      <if test="is_effective != null">
+        is_effective,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="art_number != null">
+        #{art_number,jdbcType=TINYINT},
+      </if>
+      <if test="create_by != null">
+        #{create_by,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified_by != null">
+        #{modified_by,jdbcType=TIMESTAMP},
+      </if>
+      <if test="is_effective != null">
+        #{is_effective,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenxq.blog.personalBlog.Domain.Category">
+    update category
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="art_number != null">
+        art_number = #{art_number,jdbcType=TINYINT},
+      </if>
+      <if test="create_by != null">
+        create_by = #{create_by,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified_by != null">
+        modified_by = #{modified_by,jdbcType=TIMESTAMP},
+      </if>
+      <if test="is_effective != null">
+        is_effective = #{is_effective,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenxq.blog.personalBlog.Domain.Category">
+    update category
+    set name = #{name,jdbcType=VARCHAR},
+      art_number = #{art_number,jdbcType=TINYINT},
+      create_by = #{create_by,jdbcType=TIMESTAMP},
+      modified_by = #{modified_by,jdbcType=TIMESTAMP},
+      is_effective = #{is_effective,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
