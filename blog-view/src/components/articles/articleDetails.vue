@@ -279,8 +279,11 @@ h2{
     font-size:2rem;
 }
 .userImg{
-    width:80px;
+    width:90%;
     height:80px;
+    /* width:90%;
+    height:0;
+    padding-top:90%; */
     border-radius: 50%;
     border:4px solid #83050f;
     overflow: hidden;

@@ -68,6 +68,18 @@ li{
     background-color: #fff;
     border-style: none;
  }
+ .markdown p,.markdown div{
+   width:100%;
+   white-space: normal;
+ }
+ .markdown table{
+   width:100%;
+   border:1px solid  #f15f8d96;
+ }
+ .markdown table td,.markdown table th{
+   border:1px solid  #f15f8d79;
+   text-align: center;
+ }
  .el-button--primary{
     background-color: pink;
     border-color: pink;
