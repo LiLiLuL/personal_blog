@@ -16,7 +16,7 @@
 系统的操作日志。
 PS.要对所有的路由进行路由守卫
 页面展示如下所示：
-
+![image](https://github.com/LiLiLuL/personal_blog/blob/master/images/management_page1.PNG)
 
 
 # blog-view前台博客页面展示
