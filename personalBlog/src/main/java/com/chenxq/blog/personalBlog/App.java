@@ -9,6 +9,8 @@ import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 /**
  * Hello world!
  *
