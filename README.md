@@ -16,9 +16,19 @@
 系统的操作日志。
 PS.要对所有的路由进行路由守卫
 页面展示如下所示：
+![image](https://github.com/LiLiLuL/personal_blog/blob/master/images/login.png)
 ![image](https://github.com/LiLiLuL/personal_blog/blob/master/images/management_page1.PNG)
+![image](https://github.com/LiLiLuL/personal_blog/blob/master/images/manage.png)
+
+
 
 
 # blog-view前台博客页面展示
+![image](https://github.com/LiLiLuL/personal_blog/blob/master/images/view.png)
 # mysql数据库设计
+表与表之间的关联关系全部由代码控制
+![image](https://github.com/LiLiLuL/personal_blog/blob/master/images/mysql.png)
 # 后台接口设计personalBlog
+主要是针对前台博客页面展示的接口/client/xxx,和针对后台博客管理系统的接口/admin/xxx
+![image](https://github.com/LiLiLuL/personal_blog/blob/master/images/api1.png)
+![image](https://github.com/LiLiLuL/personal_blog/blob/master/images/api2.png)
