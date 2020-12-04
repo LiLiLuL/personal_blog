@@ -15,7 +15,7 @@
     "ajv": "^6.9.1",
     "axios": "^0.18.0",
     "element-ui": "^2.5.4",
-    "highlight.js": "^9.15.6",
+    "highlight.js": "^10.4.1",
     "imagemin": "^5.0.0",
     "marked": "^0.6.1",
     "mavon-editor": "^2.6.17",
